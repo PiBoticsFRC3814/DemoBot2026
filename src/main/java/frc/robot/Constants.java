@@ -16,11 +16,18 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
 
+    //deadszone of the drivesticks
+    public static final double kDriveDeadBand = 0.05;
+
   }
+
+  public static class MotorConstants {
 
     public static final int FR_MOTOR_ID = 11;
     public static final int FL_MOTOR_ID = 12;
     public static final int BR_MOTOR_ID = 13;
     public static final int BL_MOTOR_ID = 14;
+
+  }
     
 }

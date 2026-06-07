@@ -11,6 +11,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.math.MathUtil;
+import frc.robot.subsystems.DriveTrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,6 +24,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
+  private final DriveTrain m_robotDrive = new DriveTrain();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -30,6 +34,28 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+
+    //default Drive Command (arcade drive) students need to practice driving to see which drive method is better for parade
+    m_robotDrive.setDefaultCommand(
+      m_robotDrive.driveArcadeCommand(
+        () -> MathUtil.applyDeadband(m_driverController.getLeftY(), OperatorConstants.kDriveDeadBand),
+        () -> MathUtil.applyDeadband(m_driverController.getRightX(), OperatorConstants.kDriveDeadBand)
+      )
+    );
+
+    //alternate Drive Command (curvature drive) students need to practice driving to see which drive method is better for parade
+    //comment out default and uncomment alternate during testing
+    //m_robotDrive.setDefaultCommand(
+    //  m_robotDrive.driveCurvatureCommand(
+    //    () -> MathUtil.applyDeadband(m_driverController.getLeftY(), OperatorConstants.kDriveDeadBand),
+    //    () -> MathUtil.applyDeadband(m_driverController.getRightX(), OperatorConstants.kDriveDeadBand),
+    //    () -> {if(Math.abs(m_driverController.getLeftY()) < 0.05){
+    //            return true;
+    //            } else {return false;}
+    //          }
+    //  )
+    //);
+
   }
 
   /**
