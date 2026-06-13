@@ -5,12 +5,14 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autos;
 import frc.robot.commands.FlyWheelToggle;
 import frc.robot.commands.PistonFire;
 import frc.robot.commands.PistonUnfire;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FiringCylinder;
 import frc.robot.subsystems.FlyWheel;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.math.MathUtil;
@@ -82,7 +84,15 @@ public class RobotContainer {
 
     // Flywheel Bindings
     m_driverController.leftBumper().onTrue(new FlyWheelToggle(m_FlyWheel));
+  }
 
-
+    /**
+   * Use this to pass the autonomous command to the main {@link Robot} class.
+   *
+   * @return the command to run in autonomous
+   */
+  public Command getAutonomousCommand() {
+    // An example command will be run in autonomous
+    return Autos.exampleAuto(m_exampleSubsystem);
   }
 }
