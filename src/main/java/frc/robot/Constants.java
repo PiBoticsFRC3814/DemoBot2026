@@ -29,5 +29,11 @@ public final class Constants {
     public static final int BL_MOTOR_ID = 14;
 
   }
+
+    //FlyWheel 
+    public static final int ShooterMotor = 0; // CAN ID  
     
+    // Pneumatics
+    public static final int FowardChannel = 1;
+    public static final int ReverseChannel = 1;
 }

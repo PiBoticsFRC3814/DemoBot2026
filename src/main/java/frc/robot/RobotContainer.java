@@ -5,13 +5,16 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.FlyWheelToggle;
+import frc.robot.commands.PistonFire;
+import frc.robot.commands.PistonUnfire;
 import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.FiringCylinder;
+import frc.robot.subsystems.FlyWheel;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.math.MathUtil;
+
 import frc.robot.subsystems.DriveTrain;
 
 /**
@@ -25,6 +28,9 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final DriveTrain m_robotDrive = new DriveTrain();
+  private final FiringCylinder m_Cylinder = new FiringCylinder();
+  private final FlyWheel m_FlyWheel = new FlyWheel();
+
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
@@ -42,7 +48,6 @@ public class RobotContainer {
         () -> MathUtil.applyDeadband(m_driverController.getRightX(), OperatorConstants.kDriveDeadBand)
       )
     );
-
     //alternate Drive Command (curvature drive) students need to practice driving to see which drive method is better for parade
     //comment out default and uncomment alternate during testing
     //m_robotDrive.setDefaultCommand(
@@ -67,23 +72,17 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
+
+
   private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-  }
+    // Piston Bindings
+    m_driverController.a().onTrue(new PistonFire(m_Cylinder));
+    m_driverController.a().onFalse(new PistonUnfire(m_Cylinder));
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    // Flywheel Bindings
+    m_driverController.leftBumper().onTrue(new FlyWheelToggle(m_FlyWheel));
+
+
   }
 }
