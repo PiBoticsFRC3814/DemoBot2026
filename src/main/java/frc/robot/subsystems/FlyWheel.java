@@ -11,7 +11,7 @@ public class FlyWheel extends SubsystemBase {
   /** Creates a new FlyWheel. */
   private static TalonSRX shooter;
   public boolean isArmed = false;
-  
+
   public FlyWheel() {
     shooter = new TalonSRX(Constants.ShooterMotor);
   }
@@ -22,11 +22,8 @@ public class FlyWheel extends SubsystemBase {
 
   public void MotorOff() {
     shooter.set(ControlMode.PercentOutput,0.0);
-  }
+    }
 
-  public boolean isArmed() {
-    return false;
-  }
 
 
   
