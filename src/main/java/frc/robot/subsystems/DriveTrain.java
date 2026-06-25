@@ -32,7 +32,7 @@ public class DriveTrain extends SubsystemBase {
     backLeft.follow(frontLeft);
 
     frontRight.setInverted(false);
-    frontLeft.setInverted(false);
+    frontLeft.setInverted(true);
     backRight.setInverted(false);
     backLeft.setInverted(false);
     

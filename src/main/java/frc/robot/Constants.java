@@ -24,16 +24,16 @@ public final class Constants {
   public static class MotorConstants {
 
     public static final int FR_MOTOR_ID = 11;
-    public static final int FL_MOTOR_ID = 12;
+    public static final int FL_MOTOR_ID = 10;
     public static final int BR_MOTOR_ID = 13;
     public static final int BL_MOTOR_ID = 14;
 
   }
 
     //FlyWheel 
-    public static final int ShooterMotor = 0; // CAN ID  
+    public static final int ShooterMotor = 20; // CAN ID  
     
     // Pneumatics
     public static final int FowardChannel = 1;
-    public static final int ReverseChannel = 1;
+    public static final int ReverseChannel = 0;
 }

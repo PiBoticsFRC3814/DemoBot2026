@@ -17,7 +17,7 @@ public class FlyWheel extends SubsystemBase {
   }
   
   public void MotorOn() {
-    shooter.set(ControlMode.PercentOutput,1.0);
+    shooter.set(ControlMode.PercentOutput,-1.0);
   }
 
   public void MotorOff() {
